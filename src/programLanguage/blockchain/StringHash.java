@@ -9,7 +9,7 @@ public class StringHash {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             //Applies sha256 to our input,
             byte[] hash = digest.digest(preHash.getBytes("UTF-8"));
-            StringBuffer hexString = new StringBuffer(); // This will contain hash as hexidecimal
+            StringBuffer hexString = new StringBuffer();
             for (int i = 0; i < hash.length; i++) {
                 String hex = Integer.toHexString(0xff & hash[i]);
                 if(hex.length() == 1) hexString.append('0');

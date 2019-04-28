@@ -36,11 +36,11 @@ public class Chain2 {
             String myhash = null;
             String prehash = null;
             if(i==0){
-                myhash = StringHash.createHash("0");
+                myhash = StringHash.createHash("0"+data+time);
                 prehash = myhash;
             }else{
                 //当前块的哈希值是通过只一个块的哈希值创建
-                myhash = StringHash.createHash(myhashList.get(i-1));
+                myhash = StringHash.createHash(myhashList.get(i-1)+data+time);
                 prehash = myhashList.get(i-1);
             }
             myhashList.add(myhash);
@@ -54,6 +54,30 @@ public class Chain2 {
             System.out.println("时间戳是:"+timeList.get(i));
             System.out.println("数据是:"+dataList.get(i)+"\n");
         }
+        System.out.println("是否需要检查块，输入Y检查");
+        String isCheck = input.next();
+        if(isCheck.equals("Y")){
+            int i;
+            System.out.println("请输入要检查的块");
+            i = input.nextInt();
+            input.nextLine();
+            if(i>numBlock||i<=0){
+                System.out.println("输入块错误");
+            }else{
+                System.out.println("请输入需要修改的数据：");
+                String data = input.nextLine();
+                String preData = dataList.get(i-1);
+                dataList.remove(i-1);
+                dataList.add(i-1,data);
+                if(Check.checkList(prehashList.get(i-1),timeList.get(i-1),data,i,myhashList.get(i-1))){
+                    System.out.println("数据块"+i+"里面的数据没有被修改");
+                }else {
+                    System.out.println("数据块"+i+"里面的数据被修改");
+                    System.out.println("从->"+preData+"变为->"+data);
+                }
+            }
+        }
+
 
     }
 

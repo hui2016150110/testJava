@@ -8,5 +8,6 @@ public class Singleton {
     }
     private static class SingletonHolder{
         private static final Singleton sInstance = new Singleton();
+
     }
 }

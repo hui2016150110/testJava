@@ -22,12 +22,6 @@ public class Chain {
             }
             blockchain.add(block);
         }
-//        Block firstBlock = new Block("0","I'm the first block",1);
-//        blockchain.add(firstBlock);
-//        Block secondBlock = new Block(firstBlock.preHash,"I'm the second block",blockchain.size()+1);
-//        blockchain.add(secondBlock);
-//        Block thirdBlock = new Block(secondBlock.myHash,"third",blockchain.size()+1);
-//        blockchain.add(thirdBlock);
 
         for(Block block:blockchain){
             System.out.println("这是第"+block.index+"块");
@@ -35,6 +29,28 @@ public class Chain {
             System.out.println("前置哈希值:"+block.preHash);
             System.out.println("时间戳是:"+block.getTimeStamp());
             System.out.println("数据是:"+block.getDate()+"\n");
+        }
+        System.out.println("是否需要检查块，输入Y检查");
+        String isCheck = input.next();
+        if(isCheck.equals("Y")){
+            int i,j;
+            System.out.println("请输入要检查的块");
+            i = input.nextInt();
+            if(i>numBlock||i<=0){
+                System.out.println("输入块错误");
+            }else{
+                System.out.println("请输入需要修改的数据：");
+                String data = input.next();
+                Block block = blockchain.get(i-1);
+                String preData = block.getDate();
+                block.setData(data);
+                if(Check.checkBlock(block,i)){
+                    System.out.println("数据块"+i+"里面的数据没有被修改");
+                }else {
+                    System.out.println("数据块"+i+"里面的数据被修改");
+                    System.out.println("从->"+preData+"变为->"+data);
+                }
+            }
         }
 
     }

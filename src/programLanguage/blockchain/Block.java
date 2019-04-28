@@ -27,4 +27,16 @@ public class Block {
     public long getTimeStamp() {
         return timeStamp;
     }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public void setIndex(long index) {
+        this.index = index;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 }
